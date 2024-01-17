@@ -4,6 +4,8 @@ const express = require('express')
 const { engine } = require('express-handlebars')
 const app = express()
 const port = 3000
+const restaurants = require('./public/jsons/restaurants.json').results
+
 
 // 使用express function 使用 tempalte engine
 app.engine('.hbs', engine({extname: '.hbs'}));
@@ -16,7 +18,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/restaurants', (req, res) => {
-  res.render('index')
+  res.render('index', { restaurants })
 })
 
 app.get('/restaurant/:id', (req, res) => {
